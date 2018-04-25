@@ -1,0 +1,58 @@
+﻿@using FluentBootstrap
+@using WebApplication1.Components
+@model WebApplication1.ViewModel.AttendeeViewModel.AttendeeViewModel
+
+@*begin ** Search Area ***@
+<style>
+    .panel-heading {
+        background-color: green !important;
+    }
+
+    .btn-primary {
+        background-color: green;
+        border-color: darkgreen;
+    }
+</style>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title"> Search for People Attending @Model.AnEvent.EventName</h1>
+    </div>
+    <div align="center"></div>
+
+    @if (Model.arole)
+    {
+        @Html.Bootstrap().LinkButton("Back to Event List", "IndexAdmin", "Event").SetIcon(Icon.Save).SetState(ButtonState.Link).SetAlignment(TextAlignment.Center)
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SearchEntity.lastName, "Search Attendees by Last Name")
+                @Html.TextBoxFor(m => m.SearchEntity.lastName, new { @class = "form-control" })
+
+            </div>
+            <div class="panel-footer">
+                @Html.Bootstrap().Button("Search").AddAttribute("data-bacs488-action", "search").SetIcon(Icon.Search).SetState(ButtonState.Primary)
+                @Html.Bootstrap().Button("Reset").AddAttribute("data-bacs488-action", "resetsearch").SetIcon(Icon.ShareAlt).SetState(ButtonState.Primary)
+                @Html.Bootstrap().Button("Add").AddAttribute("data-bacs488-action", "add").SetIcon(Icon.PlusSign).SetState(ButtonState.Success)
+                @Html.Bootstrap().Button("Update").AddAttribute("data-bacs488-action", "return").SetIcon(Icon.OkSign).SetState(ButtonState.Link)
+            </div>
+
+        </div>
+    }
+    else
+    {
+        @Html.Bootstrap().LinkButton("Back to Event List", "Index", "Event").SetIcon(Icon.Save).SetState(ButtonState.Link).SetAlignment(TextAlignment.Center)
+        <div class="panel-body">
+            <div class="form-group">
+                @Html.LabelFor(m => m.SearchEntity.lastName, "Attendee by Last Name")
+                @Html.TextBoxFor(m => m.SearchEntity.lastName, new { @class = "form-control" })
+
+            </div>
+            <div class="panel-footer">
+                @Html.Bootstrap().Button("Search").AddAttribute("data-bacs488-action", "search").SetIcon(Icon.Search).SetState(ButtonState.Primary)
+                @Html.Bootstrap().Button("Reset").AddAttribute("data-bacs488-action", "resetsearch").SetIcon(Icon.ShareAlt).SetState(ButtonState.Primary)
+
+            </div>
+
+        </div>
+    }
+
+</div>

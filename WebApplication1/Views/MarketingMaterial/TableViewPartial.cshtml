@@ -1,0 +1,59 @@
+﻿@model WebApplication1.ViewModel.MarketingViewModel.MarketingViewModel
+
+@*begin ** Grid Area ***@
+
+@using (var table = Html.Bootstrap().Table().SetStyle(TableStyle.Striped).Begin())
+{
+    if (Model.arole)
+    {
+
+        @table.TableHeaderRow("Edit", "Description", "Comments", "Resource", "Delete")
+
+        foreach (var item in Model.MarketingList)
+        {
+            if (item.Description == null || !item.Description.Contains("Document"))
+            {
+                @table.TableDataRow(
+                    @Html.Bootstrap().Button("Edit")
+                        .AddAttribute("data-bacs488-action", "edit")
+                        .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Edit)
+                    , item.Description,
+                    item.Comments,
+                    @Html.Bootstrap().Image(item.Resource, "Resource").SetResponsive(),
+                    @Html.Bootstrap().Button("Delete")
+                        .AddAttribute("data-bacs488-action", "delete")
+                        .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Trash))
+            }
+            else
+            {
+
+                var aref = "<a href ='" + item.Resource + "'> download</a> ";
+                @table.TableDataRow(
+                    @Html.Bootstrap().Button("Edit")
+                        .AddAttribute("data-bacs488-action", "edit")
+                        .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Edit)
+                    , item.Description,
+                    item.Comments,
+                    aref,
+                    @Html.Bootstrap().Button("Delete")
+                        .AddAttribute("data-bacs488-action", "delete")
+                        .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Trash))
+            }
+        }
+    }
+    else
+    {
+        @table.TableHeaderRow("Description", "Comments", "Resource")
+
+        foreach (var item in Model.MarketingList)
+        {
+            {
+                var aref = "<a href ='" + item.Resource + "'> download</a> ";
+                @table.TableDataRow(item.Description,
+                    item.Comments,
+                    aref)
+
+            }
+        }
+    }
+}

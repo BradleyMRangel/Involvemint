@@ -1,0 +1,78 @@
+﻿@using WebApplication1.Components
+@model WebApplication1.ViewModel.EventViewModels.EventViewModel
+
+<style>
+.panel-heading{
+    background-color:green !important;
+}
+.btn-primary{
+            background-color:green;
+            border-color:darkgreen;
+        }
+</style>
+
+@*begin ** Search Area ***@
+<div class="panel panel-primary">
+<div class="panel-heading">
+    <h1>Event Search</h1>
+</div>
+
+    <div class="panel-body">
+        <div class="form-group">
+            <div class="form-inline">
+                @*@Html.LabelFor(m => m.SearchEntity.EventName, "Event Name")
+                @Html.BootstrapTextBoxFor(m => m.SearchEntity.EventName,
+                    HtmlExtensionsCommon.Html5InputTypes.text, /*type*/
+                    "Name", /*title*/
+                    "Enter Partial Name", /*placeholder*/
+                    false, /*is required*/
+                    true, new { @id = "autocomplete" }) @*/*autofocus*/*@
+                    @*@Html.Bootstrap().Button("Search").AddAttribute("data-bacs488-action", "search").SetIcon(Icon.Search).SetState(ButtonState.Primary)*@
+
+                    @Html.LabelFor(m => m.SearchEntity.EventType, "Search Events by Type  ")
+                    @Html.BootstrapTextBoxFor(m => m.SearchEntity.EventType,
+                    HtmlExtensionsCommon.Html5InputTypes.text, /*type*/
+                    "Name", /*title*/
+                    "What kind of event?", /*placeholder*/
+                    false, /*is required*/
+                    true, new { @id = "autocomplete" }) @*/*autofocus*/*@
+                    @Html.Bootstrap().Button("Search").AddAttribute("data-bacs488-action", "search").SetIcon(Icon.SortByAlphabet).SetState(ButtonState.Primary)
+
+            </div>
+        </div>
+        <div class="continer">
+            <div class="panel panel-primary">
+                <div id="results"></div>
+            </div>
+            <div class="panel">
+                <div class="form-group">
+                    <div class="form-inline">
+                        <button type="button" class="btn btn-primary" id="currentevents">Show Current Events</button>
+
+                        @Html.BootstrapTextBoxFor(m => m.SearchEntity.EventAttendance,
+                        HtmlExtensionsCommon.Html5InputTypes.text, /*type*/
+                        "Find Popular Events", /*title*/
+                        "Enter Attendance Count", /*placeholder*/
+                        false, /*is required*/
+                        true, new { @id = "attendanceAmount" })
+                        <button type="button" class="btn btn-primary" id="attendance">Find Popular Events</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+
+        @Html.Bootstrap().Button("Reset").AddAttribute("data-bacs488-action", "resetsearch").SetIcon(Icon.ShareAlt).SetState(ButtonState.Primary)
+
+     @**********************************************Only show this if in Admin role*********************@
+        
+        @if (Model.arole)
+    {
+        @Html.Bootstrap().Button("Add").AddAttribute("data-bacs488-action", "add").SetIcon(Icon.PlusSign).SetState(ButtonState.Success)
+    }
+    </div>
+</div>
+
+
+@*end ** Search Area ***@

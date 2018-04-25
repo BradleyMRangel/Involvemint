@@ -1,0 +1,55 @@
+﻿@using FluentBootstrap
+@model WebApplication1.ViewModel.AttendeeViewModel.AttendeeViewModel
+
+@*begin ** Grid Area ***@
+<style>
+    .panel-heading {
+        background-color: green !important;
+    }
+
+    .btn-primary {
+        background-color: green;
+        border-color: darkgreen;
+    }
+</style>
+@using (var table = Html.Bootstrap().Table().SetStyle(TableStyle.Striped).Begin())
+{
+
+
+    if (Model.arole)
+    {
+        @table.TableHeaderRow("Edit", "First Name", "Last Name", "Picture", "Delete")
+        foreach (var item in Model.AttendeeList)
+        {
+            if (item.lastName != null && item.firstName != null) //&& item.firstName == null)
+            {
+                @table.TableDataRow(
+                    @Html.Bootstrap().Button("Edit")
+                        .AddAttribute("data-bacs488-action", "edit")
+                        .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Edit)
+                    , item.firstName,
+                    item.lastName,
+                    @Html.Bootstrap().Image(item.AttendeeResource, "Resource").SetResponsive(),
+                    @Html.Bootstrap().Button("Delete")
+                        .AddAttribute("data-bacs488-action", "delete")
+                        .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Trash))
+            }
+        }
+    }
+    else
+    {
+        @table.TableHeaderRow("First Name", "Last Name", "Picture")
+        foreach (var item in Model.AttendeeList)
+        {
+
+            @table.TableDataRow(item.firstName,
+                item.lastName,
+                @Html.Bootstrap().Image(item.AttendeeResource, "Resource").SetResponsive())
+
+        }
+    }
+}
+@section scripts {
+    <script src="~/Scripts/bacs488.js"></script>}
+
+@*end ** Grid Area ***@

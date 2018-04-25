@@ -1,0 +1,96 @@
+﻿@model WebApplication1.ViewModel.MarketingViewModel.MarketingViewModel
+
+
+@using(Html.BeginForm( new { enctype = "multipart/form-data" }))
+{
+    @*begin ** Hidden Area ***@
+    @Html.HiddenFor(m => m.EventCommand)
+    @Html.HiddenFor(m => m.Mode)
+    @Html.HiddenFor(m => m.EventArgument)
+    @Html.HiddenFor(m => m.EventId)// added for Marketing material
+    @Html.HiddenFor(m=>m.arole)
+    @*end ** Hidden Area ***@
+
+   
+    if (Model.IsSearchAreaVisible)
+    {
+        Html.RenderPartial("~/Views/MarketingMaterial/SearchFormPartial.cshtml", @Model);
+    }
+
+    if (Model.IsDetailAreaVisible)
+    {
+        Html.RenderPartial("~/Views/MarketingMaterial/AddEditFormPartial.cshtml", @Model);
+    }
+    if (Model.IsListAreaVisible)
+    {
+        Html.RenderPartial("~/Views/MarketingMaterial/TableViewPartial.cshtml", @Model);
+    }
+}
+
+
+@section scripts {
+    <script>  $(document).ready(function () {
+
+    $("[data-bacs488-action]").on("click", function (e) {
+        e.preventDefault();
+
+        $("#EventCommand").val(
+            $(this).data("bacs488-action"));
+
+
+        var test = $(this).attr("data-bacs488-val");
+        if (test != null) {
+            $("#EventArgument").val(
+                $(this).attr("data-bacs488-val"));
+        }
+
+        $("form").submit();
+    });
+
+    $(function () {
+        $("#datepicker").datepicker({
+            autoclose: true,
+            todayHighlight: true
+        }).datepicker('update', new Date());;
+    });
+     //this code process file upload via an ajax call to the "UploadFile" method of the MarketingMaterial Controller
+    $('#txtUploadFile').on('change', function (e) {
+
+        var files = e.target.files;
+
+        if (files.length > 0) {
+            if (window.FormData !== undefined) {
+                var data = new FormData();
+                for (var x = 0; x < files.length; x++) {
+                    data.append("file" + x, files[x]);
+                }
+
+                $.ajax({
+                    type: "POST",
+                    url: '/MarketingMaterial/UploadFile',
+                    contentType: false,
+                    processData: false,
+                    data: data,// the data sent to the server consist of the file bytes
+                    success: function (result) {  // on success take the result and display it as text in the image textbox
+                        $("#imagebox").val(result);
+                        console.log(result);
+                    },
+                    error: function (xhr, status, p3, p4) {
+
+                        var err = "Error " + " " + status + " " + p3 + " " + p4;
+                        if (xhr.responseText && xhr.responseText[0] === "{")
+                            err = JSON.parse(xhr.responseText).Message;
+                        console.log(err);
+                    }
+                });
+            } else {
+                alert("This browser doesn't support HTML5 file uploads!");
+            }
+        }
+    });
+    });
+
+    </script>
+    @*  <script src="~/Scripts/bacs488.js"></script>*@
+}
+

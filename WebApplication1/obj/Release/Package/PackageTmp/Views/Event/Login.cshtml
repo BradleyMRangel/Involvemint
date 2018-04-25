@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+<!-- ** BEGIN MESSAGE AREA -->
+<style>
+    label{
+            align-content:left;
+            margin-left:0px;
+        }
+    fieldset{
+        align-content:left;
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        @if (!ViewBag.IsValid)
+        {
+            <div class="alert alert-danger
+                    alert-dismissable"
+                 role="alert">
+                <button type="button" class="close"
+                        data-dismiss="alert">
+                    <span aria-hidden="true">
+                        &times;
+                    </span>
+                    <span class="sr-only">Close</span>
+                </button>
+                @Html.ValidationSummary(false)
+            </div>
+        }
+    </div>
+</div>
+<!-- ** END MESSAGE AREA -->
+<h2>Login</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="col-md-push-6">
+        <div class="well bs-component">
+            <fieldset>
+                <div class="containercontent">
+                    <p>
+                        <label id="username" for="username">Username:</label>
+                        @Html.TextBox("username")
+                        @Html.ValidationMessage("Username")
+                    </p>
+                    <div id="divPassword">
+                        <label for="password">Password:</label>
+                        @Html.Password("password")
+                        @Html.ValidationMessage("Password")
+                    </div>
+                    <button type="submit" class="submitbutton"><i class="submitbutton"></i>submit</button>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+}

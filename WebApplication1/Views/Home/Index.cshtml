@@ -1,0 +1,79 @@
+﻿ @{
+   Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        .jumbotron{
+            background-image: url(/Content/app_wallpaper.jpg);
+        }
+        .jumbotron p{
+            font-weight: normal;
+            color:#3B4A48;
+        }
+        .btn-primary{
+            background-color:green;
+            border-color:darkgreen;
+        }
+    </style>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Jumbotron Template for Bootstrap</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="jumbotron.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- Main jumbotron for a primary marketing message or call to action -->
+    <div class="jumbotron">
+        <div class="container">
+            <h1 class="display-3">Become Eventful.</h1>
+            <p style="bold">Discover the adventure all around you. It's out there in the nooks and crannies of the urban jungle and plentiful on the vast plains. Go join what's already happening or start an movement all your own. Involvement provides you with the power to discover what it means to be eventful.</p>
+            <p><a class="btn btn-success btn-lg" href="/Home/About" role="button" background-color="green">Discover More&raquo;</a></p>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Example row of columns -->
+        <div class="row">
+            <div class="col-md-4">
+                <img src="~/Content/individuals.png" />
+                <p>Do you seek the thrill of adventure and spoils of exploration? Quickly begin to browse what hidden treasures are right below your nose.</p>
+                <p><a class="btn btn-success" href="/Event/Index" role="button">Browse Events &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <img src="~/Content/groups.png" />
+                <p>Host and create events for your organization. Big or small, Involvemint is the perfect place for your organization to share events.</p>
+                <p><a class="btn btn-success" href="/Event/Login" role="button">Login &raquo;</a></p>
+            </div>
+            <div class="col-md-4">
+                <img src="~/Content/businesslogo.png" />
+                <p>Promote your next business event. Whether you're throwing a rodeo or creating a tour of all the city's karaoke bars, Involvemint is here to let people know.</p>
+                <p><a class="btn btn-success" href="/Event/Login" role="button">Login &raquo;</a></p>
+            </div>
+        </div>
+    </div> <!-- /container -->
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+</body>
+</html>
+

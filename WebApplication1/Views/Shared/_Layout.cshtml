@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        /* Popover */
+        .popover {
+            padding: 0px;
+            max-width: 95%;
+        }
+        /* Popover Header */
+        .popover-title {
+            padding: 0px;
+            background-color: #FFF !important;
+            color: #102C52 !important;
+        }
+        /* Popover Body */
+        .popover-content {
+            background-color: #102C52;
+            color: #FFF;
+            text-align: left;
+        }
+        /* Popover Arrow */
+        .arrow {
+            border-right-color: #4f748b !important;
+        } 
+        p{
+            padding:4px 7px 2px 4px;
+            font-size: 14px;
+        }
+        img {
+            display: block;
+            max-height: 200%;
+            max-width: 200%;
+            padding-bottom:10px;
+        }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title -Involvemint</title>
+    @Styles.Render("~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/datepicker.css" rel="stylesheet" />
+   
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap-datepicker.js"></script>
+   
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.Raw(@Html.ActionLink("[replacementtext]", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" }).ToHtmlString().Replace("[replacementtext]","<img src=\"/content/logo.png\".../>")
+)            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Events", "Index", "Event")</li>
+                    <li>@Html.ActionLink("Contact Us", "ContactUs", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div>
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(""+DateTime.Now.Year+" - Involvemint™", "Index", "Home") </li>
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Events", "Index", "Event")</li>
+                    <li>@Html.ActionLink("Contact Us", "ContactUs", "Home")</li>
+                </ul>
+            </div>
+        </footer>
+    </div>
+
+   @Scripts.Render("~/bundles/jquery")
+
+
+   @Scripts.Render("~/bundles/bootstrap")
+  
+    @*// Add jqueryui Scripts to file*@
+
+    @Styles.Render("~/Content/themes/base")
+    @Scripts.Render("~/bundles/jqueryui")
+   
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

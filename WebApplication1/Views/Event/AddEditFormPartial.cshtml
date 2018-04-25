@@ -1,0 +1,137 @@
+﻿@using Microsoft.Web.Helpers
+@using WebApplication1.Components
+@model WebApplication1.ViewModel.EventViewModels.EventViewModel
+<style>
+    .panel-heading {
+        background-color: green !important;
+    }
+
+    .btn-primary {
+        background-color: green;
+        border-color: darkgreen;
+    }
+</style>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h1 class="panel-title">
+            Event Information
+        </h1>
+    </div>
+    <div class="panel-body">
+        <!-- ** BEGIN MESSAGE AREA -->
+        <div class="row">
+            <div class="col-xs-12">
+                @if (!Model.IsValid)
+                {
+                    <div class="alert alert-danger
+                    alert-dismissable"
+                         role="alert">
+                        <button type="button" class="close"
+                                data-dismiss="alert">
+                            <span aria-hidden="true">
+                                &times;
+                            </span>
+                            <span class="sr-only">Close</span>
+                        </button>
+                        @Html.ValidationSummary(false)
+                    </div>
+                }
+            </div>
+        </div>
+        <!-- ** END MESSAGE AREA -->
+        <!-- ** BEGIN INPUT AREA -->
+        <div class="form-group">
+
+            @Html.LabelFor(m => m.Entity.EventName,
+                "Event Name")
+            @Html.BootstrapTextBoxFor(m => m.Entity.EventName,
+                HtmlExtensionsCommon.Html5InputTypes.text, /*type*/
+                "Name", /*title*/
+                "Name", /*placeholder*/
+                true, /*is required*/
+                true) @*/*autofocus*/*@
+        </div>
+
+        <div class="input-append date" id="dp3" data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+            <div class="form-group">
+                @Html.LabelFor(m => m.Entity.EventDate, "Date")
+                @Html.BootstrapTextBoxFor(m => m.Entity.EventDate,
+                    HtmlExtensionsCommon.Html5InputTypes.text,
+                    "Event Date",
+                    "",
+                    false,
+                    false, new {@onfocus = "blur()", @id = "datepicker"})
+            </div>
+            <span class="add-on"><i class="icon-th"></i></span>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Entity.EventType,
+                "Event Type")
+            @Html.BootstrapTextBoxFor(m => m.Entity.EventType,
+                HtmlExtensionsCommon.Html5InputTypes.text,
+                "Type of Event",
+                "Enter Type of Event",
+                false,
+                false)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Entity.EventAttendance, "Attendance")
+            @Html.BootstrapTextBoxFor(m => m.Entity.EventAttendance,
+                HtmlExtensionsCommon.Html5InputTypes.number,
+                "Attendance",
+                "",
+                false,
+                false)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Entity.EventLocation, "Event Location")
+            @Html.BootstrapTextBoxFor(m => m.Entity.EventLocation,
+                HtmlExtensionsCommon.Html5InputTypes.text,
+                "Event Location",
+                "",
+                false,
+                false)
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Entity.EventDescription, "Event Description")
+            @Html.BootstrapTextBoxFor(m => m.Entity.EventDescription,
+                    HtmlExtensionsCommon.Html5InputTypes.text,
+                    "Event Description",
+                    "",
+                    false,
+                    false)
+        </div>
+        @if (Model.Mode.Contains("Edit"))
+        {
+
+            <div>
+                @Html.Bootstrap().Button("Event Marketing Materials").AddAttribute("data-bacs488-action", "updateMaterials").AddAttribute("data-bacs488-val", @Model.Entity.id).SetIcon(Icon.PlayCircle).SetState(ButtonState.Primary)
+                @Html.Bootstrap().Button("Event Attendees").AddAttribute("data-bacs488-action", "updateAttendance").AddAttribute("data-bacs488-val", @Model.Entity.id).SetIcon(Icon.EyeOpen).SetState(ButtonState.Primary)
+            </div>
+        }
+        <script src="https://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
+
+        @Maps.GetGoogleHtml(Model.Entity.EventLocation,
+            width: "400",
+            height: "400");
+
+    </div>
+    <!-- ** END INPUT AREA -->
+
+    <div class="panel-footer">
+        <div class="row">
+            <div class="col-sm-12">
+                @if (Model.arole)
+                {
+
+                    @Html.Bootstrap().Button("Save").AddAttribute("data-bacs488-action", "save").SetIcon(Icon.FloppyDisk).SetState(ButtonState.Primary)
+                    @Html.Bootstrap().Button("Cancel").AddAttribute("data-bacs488-action", "cancel").AddAttribute("formnovalidate", "formnovalidate").SetIcon(Icon.FloppyDisk).SetState(ButtonState.Primary)
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*end ** Grid Area ***@

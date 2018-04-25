@@ -1,0 +1,43 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WebApplication1.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="Ndatabase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">c:\temp\products.ndb</Value>
+    </Setting>
+    <Setting Name="csvFile" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\temp\events.csv</Value>
+    </Setting>
+    <Setting Name="endpointUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">
+https://hashtagmcb.documents.azure.com:443/</Value>
+    </Setting>
+    <Setting Name="authorizationKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">gMltCWXA3FFtAPRyU4nTq1tcx6790px7uqFnVmsPE9VwlMLAeG1dzHkKnX28otloycn5EnP3b39ufqHyETnzFA==</Value>
+    </Setting>
+    <Setting Name="databaseId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">events</Value>
+    </Setting>
+    <Setting Name="collectionId" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">eventcollection</Value>
+    </Setting>
+    <Setting Name="initdatabase" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">true</Value>
+    </Setting>
+    <Setting Name="repository" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">hashtagmcb</Value>
+    </Setting>
+    <Setting Name="blogStorageCollection" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">todd</Value>
+    </Setting>
+    <Setting Name="secondaryKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">tPymIUi6utGvLyLAfroW1YBBHZ5oKR86hXDohI3nSVFxhuwO7fPmwNC7CF8DHHI7Dk2mfqn17UmjBHPJk3mozA==</Value>
+    </Setting>
+    <Setting Name="primaryConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AccountEndpoint=https://hashtagmcb.documents.azure.com:443/;AccountKey=gMltCWXA3FFtAPRyU4nTq1tcx6790px7uqFnVmsPE9VwlMLAeG1dzHkKnX28otloycn5EnP3b39ufqHyETnzFA==;</Value>
+    </Setting>
+    <Setting Name="secondaryConnectionString" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">AccountEndpoint=https://hashtagmcb.documents.azure.com:443/;AccountKey=tPymIUi6utGvLyLAfroW1YBBHZ5oKR86hXDohI3nSVFxhuwO7fPmwNC7CF8DHHI7Dk2mfqn17UmjBHPJk3mozA==;</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

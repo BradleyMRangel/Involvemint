@@ -1,0 +1,52 @@
+﻿@using FluentBootstrap
+@model WebApplication1.ViewModel.EventViewModels.EventViewModel
+
+@*begin ** Grid Area ***@
+
+@using (var table = Html.Bootstrap().Table().SetStyle(TableStyle.Striped).Begin())
+{
+
+    // check to see user role is admin
+    if (Model.arole)
+    {
+        @table.TableHeaderRow("Edit", "Event Name", "Date", "Type of Event", "Attendance", "Delete", "People Attending", "Event Marketing Materials");
+        foreach (var item in Model.Events)
+        {
+            @table.TableDataRow(
+                @Html.Bootstrap().Button("")
+                    .AddAttribute("data-bacs488-action", "edit")
+                    .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Edit)
+
+                , "<div data-toggle = 'popover' title = '" + item.EventDate.ToShortDateString() + "' data-content = '<img src=\"/Content/bearlogo.png\"/><h1><strong>" + @item.EventDescription + "'></strong></h1>" + @item.EventName + " </div>", item.EventDate.ToShortDateString(), item.EventType, string.Format("{0:N0}", item.EventAttendance),
+                @Html.Bootstrap().Button("")
+                    .AddAttribute("data-bacs488-action", "delete")
+                    .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Trash),
+                @Html.Bootstrap().Button("Attendees").AddAttribute("data-bacs488-action", "updateAttendance").AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.EyeOpen),
+
+                @Html.Bootstrap().Button("Event Marketing Materials").AddAttribute("data-bacs488-action", "updateMaterials").AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.PlayCircle))
+
+        }
+    }
+    else   // role is user
+    {
+        @table.TableHeaderRow("View", "Event Name", "Date", "Type of Event", "Attendance", "People Attending", "Event Marketing Materials");
+        foreach (var item in Model.Events)
+        {
+            @table.TableDataRow(
+                @Html.Bootstrap().Button("View")
+                    .AddAttribute("data-bacs488-action", "edit")
+                    .AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.Edit)
+                    , "<div data-toggle = 'popover' title = '" +"<strong>"+ item.EventDate.ToShortDateString() +"</strong>"+ "' data-content = '<img src=\"/Content/bearlogo.png\"/><p>" + @item.EventDescription + "'></p>" + @item.EventName + " </div>", item.EventDate.ToShortDateString(), item.EventType, string.Format("{0:N0}", item.EventAttendance),
+
+                @Html.Bootstrap().Button("Attendees").AddAttribute("data-bacs488-action", "updateAttendance").AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.EyeOpen),
+                @Html.Bootstrap().Button("More Info").AddAttribute("data-bacs488-action", "updateMaterials").AddAttribute("data-bacs488-val", item.id).SetIcon(Icon.PlayCircle));
+        }
+    }
+}
+
+@section scripts {
+    <script src="~/Scripts/bacs488.js"></script>
+    }
+
+@*end ** Grid Area ***@
+@*end ** Grid Area ***@
